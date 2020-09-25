@@ -1,0 +1,12 @@
+---
+- hosts: all
+  gather_facts: no
+
+  tasks:
+    - debug:
+        msg: try to list directories
+    - name: ls to directories
+      shell: "ls -ltr"
+      register: ls_result
+   
+    - debug: var=ls_result.stdout

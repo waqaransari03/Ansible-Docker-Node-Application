@@ -1,0 +1,14 @@
+- name: build docker-image
+  docker_image: 
+    path: /home/ubuntu/my_docker_app
+    name: my_docker_app
+    tag: v1
+
+#- name: Go to the folder and execute command
+#  command: "chdir=/home/ubuntu/my_docker_app"
+
+- name: Run Docker-Compose
+  command: chdir=/home/ubuntu/my_docker_app docker-compose up -d
+  register: output
+- debug: var=output.stdout 
+    

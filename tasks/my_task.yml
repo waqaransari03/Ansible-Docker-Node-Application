@@ -1,0 +1,16 @@
+- name: Create directory for application if not exists
+  file:
+    path: /home/ubuntu/my_docker_app
+    state: directory
+    mode: '0755'
+
+- name: Copy applicaton zip and unzip in host 
+  unarchive:
+    src: /home/ubuntu/docker-node-app.tgz
+    dest: /home/ubuntu/my_docker_app
+
+
+  #shell: "ps -ef | grep exe"
+  #register: java_status
+
+#- debug: var=java_status.stdout

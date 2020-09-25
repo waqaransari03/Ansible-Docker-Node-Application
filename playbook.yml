@@ -1,0 +1,25 @@
+---
+- hosts: all
+  gather_facts: no
+  become: yes
+  vars_files:
+    - ./vars/default.yml
+
+  tasks:
+    - debug:
+        msg: Installation of docker and docker compose 
+
+    - name: Installation of Packages 
+      include: ./tasks/my_installation.yml
+
+    - debug:
+        msg: Copy application to machine "{{container_name_node}}"
+
+    - name: transfer application and unzip application 
+      include: ./tasks/my_task.yml
+
+    - name: build docker image and run container
+      include: ./tasks/build_docker.yml
+
+- name: include another playbook
+  include: ./playbooks/check-list.yml  
